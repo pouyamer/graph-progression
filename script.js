@@ -50,7 +50,8 @@ const drawMainGraph = () => {
 
 let offSet = 0
 const animate = () => {
-  ctx.clearRect(0, 0, canvas.width, canvas.width)
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
+
   config.mainGraph.toggleShow && drawMainGraph()
 
   for (
@@ -60,11 +61,6 @@ const animate = () => {
   ) {
     points.push(new Point(i, yFunction(i)))
   }
-
-  config.points.toggleShow &&
-    points.forEach(point => {
-      point.draw(ctx)
-    })
 
   // Line to next point
   if (config.lines.toggleShow) {
@@ -81,6 +77,11 @@ const animate = () => {
     ctx.stroke()
   }
 
+  config.points.toggleShow &&
+    points.forEach(point => {
+      point.draw(ctx)
+    })
+
   // Next Step of the animation
   offSet += movingSpeed
   const { repeating, repeatingFromTheBeginingOfTheScreen } = config.graph
@@ -96,19 +97,3 @@ const animate = () => {
 
 // APP STARTS HERE
 animate()
-
-console.log({ x: innerWidth, y: innerHeight })
-const { canvasMultiplier } = config.graph
-console.log("From: ", {
-  x: new Point(
-    -innerWidth / (canvasMultiplier * 2),
-    innerHeight / (canvasMultiplier * 2)
-  ).cX
-})
-
-console.log("to", {
-  x: new Point(
-    innerWidth / (canvasMultiplier * 2),
-    innerHeight / (canvasMultiplier * 2)
-  ).cX
-})
