@@ -18,7 +18,7 @@ const config = {
   },
   points: {
     toggleShow: true,
-    fillColor: "blue",
+    fillColor: "darkred",
     radius: 4
   },
   lines: {
