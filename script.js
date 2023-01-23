@@ -77,6 +77,7 @@ const animate = () => {
     ctx.stroke()
   }
 
+  // Drawing Points
   config.points.toggleShow &&
     points.forEach(point => {
       point.draw(ctx)
@@ -84,7 +85,10 @@ const animate = () => {
 
   // Next Step of the animation
   offSet += movingSpeed
-  const { repeating, repeatingFromTheBeginingOfTheScreen } = config.graph
+
+  //  - if repeating is set to true it resets
+  const { repeating, repeatingFromTheBeginingOfTheScreen, canvasMultiplier } =
+    config.graph
   if (repeating && points[0].cX > size.width) {
     offSet = 0
     if (repeatingFromTheBeginingOfTheScreen) {
